@@ -1,8 +1,7 @@
 # Wordle
 Just a fun little project. 
-
-Csv file with potential words is within bin/debug/netcoreapp3.1. 
-Project imports the list, cuts all with more than 5 letters and removes all words with duplicate letters.
+ 
+Project imports the list, cuts all words that dont have 5 letters and removes all words with duplicate letters. Words are read from the csv inside Words/validWords.csv
 
 In the console you can write a 5 letter word. Your word will be analysed and each letter will be assigned a colour. 
 Green - letter is in the word in the correct place.
