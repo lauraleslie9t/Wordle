@@ -6,7 +6,7 @@ Project imports the list, cuts all words that dont have 5 letters and removes al
 In the console you can write a 5 letter word. Your word will be analysed and each letter will be assigned a colour. 
 Green - letter is in the word in the correct place.
 Yellow - letter is in the word but the wrong position. 
-Gray - Letter is not in the word.
+Gray - letter is not in the word.
 
 Future Improvements/TODO
 -Show the status of all chars [a-z] cafter each guess. 
