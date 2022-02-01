@@ -7,25 +7,34 @@ namespace Wordle
 {
     public class ValidWords
     {
-        public List<string> NonDupeWords;
+        public List<string> WordsToGuess { get; set; }
+        public List<string> ValidWordsToGuess { get; set; }
         
 
         public ValidWords()
         {
-            NonDupeWords = new List<string>();
-            string fileName = "validWords.csv";
-            string path = Path.Combine(Environment.CurrentDirectory, @"Data\", fileName);
-            StreamReader wordReader = new StreamReader("validWords.csv");
-            string file = wordReader.ReadToEnd();
-            string[] wordArray = file.Split(", ");
+            WordsToGuess = new List<string>();
+            StreamReader validWordReader = new StreamReader("../../../Words/WordsToGuess.csv");
+            string file = validWordReader.ReadToEnd();
+            string[] wordArray = file.Split("\r\n");
             foreach (string word in wordArray)
             {
-                if (word.Length==5 & !IsDuplicateChar(word) )
-                {
-                    NonDupeWords.Add(word);
-                }
+                WordsToGuess.Add(word.ToUpper());
             }
-            wordReader.Close();
+            validWordReader.Close();
+
+
+            ValidWordsToGuess = new List<string>();
+            StreamReader validGuessReader = new StreamReader("../../../Words/GuessList.csv");
+            file = validGuessReader.ReadToEnd();
+            string[] validGuessArray = file.Split("\r\n");
+            foreach (string word in validGuessArray)
+            {
+                ValidWordsToGuess.Add(word.ToUpper());
+                WordsToGuess.Add(word.ToUpper());
+            }
+            validGuessReader.Close();
+
         }
 
         private bool IsDuplicateChar(string word)
@@ -46,7 +55,7 @@ namespace Wordle
         public string GetRandomWord()
         {
             Random rnd = new Random();
-            return NonDupeWords[rnd.Next(0, NonDupeWords.Count)];
+            return WordsToGuess[rnd.Next(0, WordsToGuess.Count)];
         }
     }
 }
